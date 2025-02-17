@@ -1,6 +1,7 @@
 package com.example.demo.run;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
@@ -37,14 +38,14 @@ public class RunController {
 
         Optional<Run> run = runRepository.findById(id);
         if (run.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new RunNotFoundException();
         }
         return run.get();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void create(@RequestBody Run run){
+    void create(@Valid @RequestBody Run run){
         runRepository.create(run);
     }
 

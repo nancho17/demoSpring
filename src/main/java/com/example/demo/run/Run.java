@@ -1,16 +1,24 @@
 package com.example.demo.run;
 
-import org.springframework.cglib.core.Local;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
 
 public record Run(
         Integer id,
-        String title,
+        @NotEmpty String title,
         LocalDateTime startedOn,
         LocalDateTime completedOn,
-        Integer kilometers,
+        @Positive Integer kilometers,
         Location location
-        ) {
+) {
+
+        public Run {
+                if (!completedOn.isAfter(startedOn)){
+                        throw new IllegalArgumentException("Completed On myust be after Started On");
+                }
+
+        }
 
 }
