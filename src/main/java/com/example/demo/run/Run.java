@@ -2,6 +2,7 @@ package com.example.demo.run;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.Version;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,8 @@ public record Run(
         LocalDateTime startedOn,
         LocalDateTime completedOn,
         @Positive Integer kilometers,
-        Location location
+        Location location,
+        @Version Integer version
 ) {
 
         public Run {
