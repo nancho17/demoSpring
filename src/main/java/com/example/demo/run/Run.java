@@ -12,8 +12,9 @@ public record Run(
         LocalDateTime startedOn,
         LocalDateTime completedOn,
         @Positive Integer kilometers,
-        Location location,
-        @Version Integer version
+        Location location
+        //,
+       // @Version Integer version
 ) {
 
         public Run {
